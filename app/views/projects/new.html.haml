@@ -1,0 +1,4 @@
+=form_for(@project) do |f|
+  = f.text_field :name, class: "project-form__input-name", placeholder: "プロジェクト名を入力してください"
+  = f.text_field :finish_date, class: "project-form__input-date", placeholder: "完了予定日を入力してください"
+  = f.submit "プロジェクトを作成する", class: "project-form__action-btn"

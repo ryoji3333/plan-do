@@ -1,0 +1,38 @@
+.main-content
+  .main-content__left-content
+    .new-project
+      =link_to new_project_path, class:"new-project-btn" do
+        = icon('fas', 'plus-circle')
+        新規プロジェクトを作成する
+    .container
+      .menu
+        .menu-item
+          進行中
+        .menu-item
+          完了済
+      .contents
+        .content
+          個人アプリ制作
+        .content
+          最終課題制作
+        .content
+          テスト１
+        .content
+          テスト２
+        .content
+          テスト３
+        .content
+          テスト４
+  .main-content__right-content
+    .main-content__right-content--progress
+      .pt
+        進行中のプロジェクト
+      .pn
+        １
+    .main-content__right-content--done
+      .dt
+        完了済のプロジェクト
+      .dn
+        0
+  =link_to "個別ページへ",tasks_path
+
