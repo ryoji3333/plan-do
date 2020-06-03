@@ -1,0 +1,17 @@
+.header
+  .header__title
+    .header__title--icon
+      = icon('fas', 'leaf')
+    .header__title--title
+      PlanDo
+  .header__user
+    -if user_signed_in?
+      .header__user--nickname
+        =link_to "#{current_user.nickname}のプロジェクト一覧",projects_path, class: 'user-name'
+      .header__user--logout
+        =link_to "ログアウト",destroy_user_session_path, method: :delete, class: 'user-btn'
+    -else
+      .header__user--sign-up
+        =link_to "新規登録",new_user_registration_path, class: 'user-btn'
+      .header__user--login
+        =link_to "ログイン",new_user_session_path, class: 'user-btn'

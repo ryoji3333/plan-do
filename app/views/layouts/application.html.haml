@@ -8,21 +8,4 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .header
-      .header__title
-        .header__title--i
-          = icon('fas', 'leaf')
-        .header__title--t
-          PlanDo
-      .header__user
-        -if user_signed_in?
-          .header__user--sign-up
-            名前の表示
-          .header__user--login
-            =link_to "ログアウト",destroy_user_session_path, method: :delete, class: 'user-btn'
-        -else
-          .header__user--sign-up
-            =link_to "新規登録",new_user_registration_path, class: 'user-btn'
-          .header__user--login
-            =link_to "ログイン",new_user_session_path, class: 'user-btn'
     = yield
