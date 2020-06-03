@@ -1,86 +1,80 @@
-.header{
-  width: 100vw;
-  height: 60px;
-  background-color: #333366;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  &__title{
-    display:flex;
-    &--i{
-      font-size: 40px;
-      padding-left: 15px;
-    }
-    &--t{
-      font-size: 40px;
-      font-family: 'Anton', sans-serif;
-      padding-left: 5px;
-    }
-  }
-  &__user{
-    display:flex;
-    .user-btn{
-      text-decoration: none;
-      // color: #67c5ff;
-      display: inline-block;
-      padding: 0.3em 1em;
-      text-decoration: none;
-      color: #67c5ff;
-      border: solid 2px #67c5ff;
-      border-radius: 3px;
-      transition: .4s;
-      margin-right: 15px;
-    }
-    .user-btn:hover{
-      // color: white;
-      background: #67c5ff;
-      color: white;
-    }
-    &--sign-up{
-
-    }
-    &--sign-up:hover{
-
-    }
-    &--login{
-
-    }
-    &--login:hover{
-
-    }
-  }
-  }
-
 .main-content{
-  display: flex;
-  padding: 10px 150px 0 100px;
-  &__left-content{
-    width: 100vw;
-    height: calc(100vh - 120px);
-    .new-project{
-      margin-bottom: 10px;
-      .new-project-btn{
-      padding: 15px 15px 15px 15px;
-      background-color: #00bfff;
-      color: #ffffff;
-      box-shadow: 2px 2px 4px gray;
-      border-radius: 5px;/*角の丸み*/
+  &__top-content{
+    width: 800px;
+    font-size: 25px;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    &--progress{
+      width: 300px;
+      height: 100px;
       font-weight: bold;
-      text-align: center;
-      line-height: 50px;
-      text-decoration: none;
+      line-height: 45px;
+      padding: 0.5em 1em;
+      margin: 10px 40px 30px 0; 
+      color: #4169e1;
+      background: white;
+      border-top: solid 5px #4169e1;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+      pt{
+  
+      }
+      pn{
+  
       }
     }
-    .new-project:active{
+    &--done{
+      width: 300px;
+      height: 100px;
+      font-weight: bold;
+      line-height: 45px;
+      padding: 0.5em 1em;
+      margin: 10px 0px 30px 0; 
+      color: #5d627b;
+      background: white;
+      border-top: solid 5px #5d627b;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+      dt{
+  
+      }
+      dn{
+  
+      }
+    }
+  }
+  &__bottom-content{
+    width: 800px;
+    height: 800px;
+    margin: 0 auto;
+    .new-project-btn{
+      text-decoration: none;
+    }
+    .new-project-form{
+      height: 20px;
+      padding: 15px 15px 15px 15px;
+      background-color: #9acd32;
+      color: #ffffff;
+      box-shadow: 2px 2px 4px gray;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 20px;
+      margin-bottom:20px;
+    }        
+    .new-project-form:hover{
+      background: lighten(#9acd32,15%);
+    }
+    .new-project-form:active{
       -webkit-transform: translateY(4px);
-      transform: translateY(4px);/*下に動く*/
-      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+      transform: translateY(4px);
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
       border-bottom: none;
     }
     .container{
       width: 100%;
-      height: calc(100vh - 140px);
       background-color: #f5f5f5;
       box-shadow: 2px 2px 4px gray;
       .menu{
@@ -99,16 +93,17 @@
         }
       }
       .contents{
-        width:620px;
-        height:calc(100vh - 200px);
+        width:95%;
         margin: 0 auto;
         padding-top: 15px;
-        overflow: scroll;
+        padding-bottom:15px;
+        .projects-link{
+          text-decoration: none;
+        }
         .content{
-          width: 95%;
+          width: 100%;
           height: 80px;
           background-color: #00bfff;
-          text-align: center;
           line-height: 80px;
           font-size: 30px;
           color: #ffffff;
@@ -116,6 +111,10 @@
           border-radius: 5px;/*角の丸み*/
           font-weight: bold;
           margin-bottom: 15px;
+          padding-left: 20px;
+        }
+        .content:hover{
+          background: lighten(#00bfff,15%);
         }
         .content:active{
           -webkit-transform: translateY(4px);
@@ -123,49 +122,6 @@
           box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
           border-bottom: none;
         }
-      }
-    }
-  }
-  &__right-content{
-    width: 500px;
-    height: calc(100vh - 80px);
-    font-size: 25px;
-    text-align: center;
-    margin-left: 50px;
-    color: #ffffff;
-    padding-top: 10px;
-    &--progress{
-      width: 100%;
-      height: 100px;
-      font-weight: bold;
-      padding: 0.5em 1em;
-      margin: 2em 0;
-      color: #4169e1;
-      background: white;
-      border-top: solid 5px #4169e1;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-      pt{
-
-      }
-      pn{
-
-      }
-    }
-    &--done{
-      width: 100%;
-      height: 100px;
-      font-weight: bold;
-      padding: 0.5em 1em;
-      margin: 2em 0;
-      color: #5d627b;
-      background: white;
-      border-top: solid 5px #5d627b;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-      dt{
-
-      }
-      dn{
-
       }
     }
   }

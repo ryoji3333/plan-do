@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all
+    @projects = Project.where(params[current_user.id])
   end
 
   def new
@@ -10,6 +10,10 @@ class ProjectsController < ApplicationController
   def create
     Project.create(project_params)
     redirect_to root_path
+  end
+
+  def show
+
   end
 
   private
