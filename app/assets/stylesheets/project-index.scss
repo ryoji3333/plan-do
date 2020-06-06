@@ -1,60 +1,14 @@
 .main-content{
-  &__top-content{
-    width: 800px;
-    font-size: 25px;
-    text-align: center;
-    color: #ffffff;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    &--progress{
-      width: 300px;
-      height: 100px;
-      font-weight: bold;
-      line-height: 45px;
-      padding: 0.5em 1em;
-      margin: 10px 40px 30px 0; 
-      color: #4169e1;
-      background: white;
-      border-top: solid 5px #4169e1;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-      pt{
-  
-      }
-      pn{
-  
-      }
-    }
-    &--done{
-      width: 300px;
-      height: 100px;
-      font-weight: bold;
-      line-height: 45px;
-      padding: 0.5em 1em;
-      margin: 10px 0px 30px 0; 
-      color: #5d627b;
-      background: white;
-      border-top: solid 5px #5d627b;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-      dt{
-  
-      }
-      dn{
-  
-      }
-    }
-  }
   &__bottom-content{
     width: 800px;
-    height: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     .new-project-btn{
       text-decoration: none;
     }
     .new-project-form{
       height: 20px;
       padding: 15px 15px 15px 15px;
-      background-color: #9acd32;
+      background-color: darken(#9acd32,5%);
       color: #ffffff;
       box-shadow: 2px 2px 4px gray;
       border-radius: 5px;
@@ -65,7 +19,7 @@
       margin-bottom:20px;
     }        
     .new-project-form:hover{
-      background: lighten(#9acd32,15%);
+      background: #9acd32;
     }
     .new-project-form:active{
       -webkit-transform: translateY(4px);
@@ -93,7 +47,7 @@
         }
       }
       .contents{
-        width:95%;
+        width:90%;
         margin: 0 auto;
         padding-top: 15px;
         padding-bottom:15px;

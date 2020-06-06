@@ -1,0 +1,23 @@
+.user-login
+  .user-login__text
+    ユーザーログイン
+  .user-login_form
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .user-login__form__email
+        .field
+          メールアドレス
+          %br/
+          = f.email_field :email, class:"user-login-form-email", autofocus: true, autocomplete: "email"
+      .user-login__form__password
+        .field
+          パスワード（８文字以上）
+          %br/
+          = f.password_field :password, class:"user-login-form-password", autocomplete: "new-password"
+      -# - if devise_mapping.rememberable?
+      -#   .field
+      -#     = f.check_box :remember_me
+      -#     = f.label :remember_me
+      .user-login__form__signin-btn
+        .actions
+          = f.submit "ログイン", class:"user-login-form-signin-btn"

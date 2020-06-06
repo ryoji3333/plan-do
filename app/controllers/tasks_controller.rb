@@ -3,4 +3,15 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end 
 
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
 end
