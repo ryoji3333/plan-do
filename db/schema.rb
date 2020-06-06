@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20200606042246) do
     t.string   "name",       null: false
     t.integer  "user_id",    null: false
     t.integer  "project_id", null: false
-    t.integer  "task_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,6 +35,7 @@ ActiveRecord::Schema.define(version: 20200606042246) do
     t.boolean  "finish",      default: false, null: false
     t.integer  "user_id",                     null: false
     t.integer  "project_id",                  null: false
+    t.integer  "tasklist_id",                 null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end

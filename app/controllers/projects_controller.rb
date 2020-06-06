@@ -16,8 +16,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    # @tasklists = Tasklists.where(user_id: current_user.id)
-    @tasks = Task.where(user_id: current_user.id)
+    @tasklists = Tasklist.where(project_id: @project.id)
+    @tasks = Task.where(project_id: @project.id)
   end
 
   private
