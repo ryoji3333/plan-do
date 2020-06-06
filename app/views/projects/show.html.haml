@@ -7,86 +7,103 @@
     .task-top__p-progress
       達成率50%(5/10)
     .task-top__p-date
-      完了日まであと24日(6/4予定)
+      -require 'date'
+      -today = Date.today
+      -future = @project.finish_date
+      -remainingDay = future - today
+      -if remainingDay <= 7
+        完了予定日まであと
+        %span.warning
+          = remainingDay.to_i
+        日（
+        = @project.finish_date
+        ）
+      - else
+        完了予定日まであと
+        %span.normal
+          = remainingDay.to_i
+        日（
+        = @project.finish_date
+        ）
+
   .task-bottom
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        タスク一覧
-      .task-bottom__task-list--tasks
-        - if @tasks.present?
-          #task-text.task-bottom__task-list--tasks--task
-            - @tasks.each do |task|
-              %form{"accept-charset": "UTF-8", action: task_path, method: "put"}
-                = task.text
+    - if @tasklists.present?
+      - @tasklists.each do |tasklist|
+        .task-bottom__task-list
+          .task-bottom__task-list--task-title
+            = tasklist.name
+          .task-bottom__task-list--tasks
+            - if tasklist.tasks.present?
+              - tasklist.tasks.each do |task|
+                .task-bottom__task-list--tasks--task.task-text
+                  %form{"accept-charset": "UTF-8", action: "#{task}", method:"put", id:"task-form"}
+                    = task.text
+        -# = form_for(task, url: task_path, method:"patch") do |f|
+        -#   = f.text_field :text
 
-              -# = form_for(task, url: task_path, method:"patch") do |f|
-              -#   = f.text_field :text
+        -#     .task-bottom__task-list--tasks--task
+        -#       プロジェクト作成機能の追加
+        -#     .task-bottom__task-list--tasks--task
+        -#       ログイン機能の実装をやってみたがうまくいかないときもあるにはある
+        -#     .task-bottom__task-list--tasks--task
+        -#       フロント実装
+        -#     .task-bottom__task-list--tasks--task
+        -#       プロジェクト作成機能の追加
+        -#     .task-bottom__task-list--tasks--task
+        -#       ログイン機能の実装をやってみたがうまくいかないときもあるにはある
+        -#     .task-bottom__task-list--tasks--task
+        -#       フロント実装
+        -#     .task-bottom__task-list--tasks--task
+        -#       プロジェクト作成機能の追加
+        -# .task-bottom__task-list
+        -#   .task-bottom__task-list--task-title
+        -#     作業中
+        -#   .task-bottom__task-list--tasks
+        -#     .task-bottom__task-list--tasks--task
+        -#       環境構築
+        -#     .task-bottom__task-list--tasks--task
+        -#       データベース設計
+        -# .task-bottom__task-list
+        -#   .task-bottom__task-list--task-title
+        -#     完了済
+        -#   .task-bottom__task-list--tasks
+        -#     .task-bottom__task-list--tasks--task
+        -#       アプリのアイデア出し
+        -#     .task-bottom__task-list--tasks--task
+        -#       環境構築
 
-        .task-bottom__task-list--tasks--task
-          フロント実装
-        .task-bottom__task-list--tasks--task
-          プロジェクト作成機能の追加
-        .task-bottom__task-list--tasks--task
-          ログイン機能の実装をやってみたがうまくいかないときもあるにはある
-        .task-bottom__task-list--tasks--task
-          フロント実装
-        .task-bottom__task-list--tasks--task
-          プロジェクト作成機能の追加
-        .task-bottom__task-list--tasks--task
-          ログイン機能の実装をやってみたがうまくいかないときもあるにはある
-        .task-bottom__task-list--tasks--task
-          フロント実装
-        .task-bottom__task-list--tasks--task
-          プロジェクト作成機能の追加
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        作業中
-      .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          環境構築
-        .task-bottom__task-list--tasks--task
-          データベース設計
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        完了済
-      .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          アプリのアイデア出し
-        .task-bottom__task-list--tasks--task
-          環境構築
+        -# .task-bottom__task-list
+        -#   .task-bottom__task-list--task-title
+        -#     完了済
+        -#   .task-bottom__task-list--tasks
+        -#     .task-bottom__task-list--tasks--task
+        -#       アプリのアイデア出し
+        -#     .task-bottom__task-list--tasks--task
+        -#       環境構築
 
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        完了済
-      .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          アプリのアイデア出し
-        .task-bottom__task-list--tasks--task
-          環境構築
+        -# .task-bottom__task-list
+        -#   .task-bottom__task-list--task-title
+        -#     完了済
+        -#   .task-bottom__task-list--tasks
+        -#     .task-bottom__task-list--tasks--task
+        -#       アプリのアイデア出し
+        -#     .task-bottom__task-list--tasks--task
+        -#       環境構築
 
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        完了済
-      .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          アプリのアイデア出し
-        .task-bottom__task-list--tasks--task
-          環境構築
+        -# .task-bottom__task-list
+        -#   .task-bottom__task-list--task-title
+        -#     完了済
+        -#   .task-bottom__task-list--tasks
+        -#     .task-bottom__task-list--tasks--task
+        -#       アプリのアイデア出し
+        -#     .task-bottom__task-list--tasks--task
+        -#       環境構築
 
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        完了済
-      .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          アプリのアイデア出し
-        .task-bottom__task-list--tasks--task
-          環境構築
-
-    .task-bottom__task-list
-      .task-bottom__task-list--task-title
-        完了済
-      .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          アプリのアイデア出し
-        .task-bottom__task-list--tasks--task
-          環境構築
+        -# .task-bottom__task-list
+        -#   .task-bottom__task-list--task-title
+        -#     完了済
+        -#   .task-bottom__task-list--tasks
+        -#     .task-bottom__task-list--tasks--task
+        -#       アプリのアイデア出し
+        -#     .task-bottom__task-list--tasks--task
+        -#       環境構築
