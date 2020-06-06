@@ -1,32 +1,27 @@
 = render "shared/header"
-
-.main-content
-  .main-content__top-content
-    .main-content__top-content--progress
-      .pt
-        進行中のプロジェクト
-      .pn
-        = @projects.where(finish: false).length
-    .main-content__top-content--done
-      .dt
-        完了済のプロジェクト
-      .dn
-        = @projects.where(finish: true).length
-  .main-content__bottom-content
-    =link_to new_project_path, class:"new-project-btn" do
-      .new-project-form
-        = icon('fas', 'plus-circle')
-        新規プロジェクトを作成する
-    .container
-      .menu
-        .menu-item
-          進行中
-        .menu-item
-          完了済
-      .contents
-        - @projects.each do |project|
-          = link_to "projects/#{project.id}", class: "projects-link" do
-            .content
-              = icon('fas', 'arrow-alt-circle-right')
-              = project.name
+-if user_signed_in?
+  .main-content
+    .main-content__bottom-content
+      =link_to new_project_path, class:"new-project-btn" do
+        .new-project-form
+          = icon('fas', 'plus-circle')
+          新規プロジェクトを作成する
+      .container
+        .menu
+          .menu-item
+            進行中(
+            = @projects.where(finish: false).length
+            )
+          .menu-item
+            完了済(
+            = @projects.where(finish: true).length
+            )
+        .contents
+          - @projects.each do |project|
+            = link_to "projects/#{project.id}", class: "projects-link" do
+              .content
+                = icon('fas', 'arrow-alt-circle-right')
+                = project.name
+-else
+  登録者募集中！
 

@@ -3,7 +3,7 @@
 .task-content
   .task-top
     .task-top__project-name
-      個人アプリ開発
+      = @project.name
     .task-top__p-progress
       達成率50%(5/10)
     .task-top__p-date
@@ -13,8 +13,15 @@
       .task-bottom__task-list--task-title
         タスク一覧
       .task-bottom__task-list--tasks
-        .task-bottom__task-list--tasks--task
-          ログイン機能の実装をやってみたがうまくいかないときもあるにはある
+        - if @tasks.present?
+          #task-text.task-bottom__task-list--tasks--task
+            - @tasks.each do |task|
+              %form{"accept-charset": "UTF-8", action: task_path, method: "put"}
+                = task.text
+
+              -# = form_for(task, url: task_path, method:"patch") do |f|
+              -#   = f.text_field :text
+
         .task-bottom__task-list--tasks--task
           フロント実装
         .task-bottom__task-list--tasks--task

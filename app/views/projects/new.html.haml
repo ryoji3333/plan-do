@@ -1,4 +1,16 @@
-=form_for(@project) do |f|
-  = f.text_field :name, class: "project-form__input-name", placeholder: "プロジェクト名を入力してください"
-  = f.text_field :finish_date, class: "project-form__input-date", placeholder: "完了予定日を入力してください"
-  = f.submit "プロジェクトを作成する", class: "project-form__action-btn"
+.project-new
+  .project-new__text
+    = icon('fas', 'plus-circle')
+    新規プロジェクトを作成する
+  .project-new__form
+    =form_for(@project) do |f|
+      .project-new__form__name
+        プロジェクトの名前を設定
+        %br/
+        = f.text_field :name,class:"form-name",placeholder: "プロジェクト名"
+      .project-new__form__finish
+        完了予定日の設定
+        %br/
+        = f.text_field :finish_date,class:"form-finish", placeholder: "完了予定日（例：2020/01/01）", id: "datepicker"
+      .project-new__form__btn-form
+        = f.submit "プロジェクトを作成する",class:"form-btn"

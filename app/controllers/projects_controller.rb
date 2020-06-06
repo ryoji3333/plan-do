@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.where(params[current_user.id])
+    if user_signed_in?
+      @projects = Project.where(user_id: current_user.id)
+    end
   end
 
   def new
@@ -13,7 +15,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-
+    @project = Project.find(params[:id])
+    # @tasklists = Tasklists.where(user_id: current_user.id)
+    @tasks = Task.where(user_id: current_user.id)
   end
 
   private

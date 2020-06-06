@@ -1,0 +1,29 @@
+.user-new
+  .user-new__text
+    ユーザー新規登録
+  .user-new_form
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .user-new__form__name
+        .field
+          ニックネーム(６文字以内)
+          %br/
+          = f.text_field :nickname, class:"user-form-name", autofocus: true, maxlength: "6"
+      .user-new__form__email
+        .field
+          メールアドレス
+          %br/
+          = f.email_field :email, class:"user-form-email", autofocus: true, autocomplete: "email"
+      .user-new__form__password
+        .field
+          パスワード（８文字以上）
+          %br/
+          = f.password_field :password, class:"user-form-password", autocomplete: "new-password"
+      .user-new__form__password-confirm
+        .field
+          パスワード（確認用）
+          %br/
+          = f.password_field :password_confirmation, class:"user-form-password-confirm", autocomplete: "new-password"
+      .user-new__form__signup-btn
+        .actions
+          = f.submit "新規作成", class:"user-form-signup-btn"
