@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(function() {
   $.datepicker.setDefaults( $.datepicker.regional[ "ja" ] );
   $('#datepicker').datepicker({
 

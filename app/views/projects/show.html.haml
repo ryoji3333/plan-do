@@ -33,77 +33,12 @@
           .task-bottom__task-list--task-title
             = tasklist.name
           .task-bottom__task-list--tasks
-            - if tasklist.tasks.present?
-              - tasklist.tasks.each do |task|
-                .task-bottom__task-list--tasks--task.task-text
-                  %form{"accept-charset": "UTF-8", action: "#{task}", method:"put", id:"task-form"}
-                    = task.text
-        -# = form_for(task, url: task_path, method:"patch") do |f|
-        -#   = f.text_field :text
-
-        -#     .task-bottom__task-list--tasks--task
-        -#       プロジェクト作成機能の追加
-        -#     .task-bottom__task-list--tasks--task
-        -#       ログイン機能の実装をやってみたがうまくいかないときもあるにはある
-        -#     .task-bottom__task-list--tasks--task
-        -#       フロント実装
-        -#     .task-bottom__task-list--tasks--task
-        -#       プロジェクト作成機能の追加
-        -#     .task-bottom__task-list--tasks--task
-        -#       ログイン機能の実装をやってみたがうまくいかないときもあるにはある
-        -#     .task-bottom__task-list--tasks--task
-        -#       フロント実装
-        -#     .task-bottom__task-list--tasks--task
-        -#       プロジェクト作成機能の追加
-        -# .task-bottom__task-list
-        -#   .task-bottom__task-list--task-title
-        -#     作業中
-        -#   .task-bottom__task-list--tasks
-        -#     .task-bottom__task-list--tasks--task
-        -#       環境構築
-        -#     .task-bottom__task-list--tasks--task
-        -#       データベース設計
-        -# .task-bottom__task-list
-        -#   .task-bottom__task-list--task-title
-        -#     完了済
-        -#   .task-bottom__task-list--tasks
-        -#     .task-bottom__task-list--tasks--task
-        -#       アプリのアイデア出し
-        -#     .task-bottom__task-list--tasks--task
-        -#       環境構築
-
-        -# .task-bottom__task-list
-        -#   .task-bottom__task-list--task-title
-        -#     完了済
-        -#   .task-bottom__task-list--tasks
-        -#     .task-bottom__task-list--tasks--task
-        -#       アプリのアイデア出し
-        -#     .task-bottom__task-list--tasks--task
-        -#       環境構築
-
-        -# .task-bottom__task-list
-        -#   .task-bottom__task-list--task-title
-        -#     完了済
-        -#   .task-bottom__task-list--tasks
-        -#     .task-bottom__task-list--tasks--task
-        -#       アプリのアイデア出し
-        -#     .task-bottom__task-list--tasks--task
-        -#       環境構築
-
-        -# .task-bottom__task-list
-        -#   .task-bottom__task-list--task-title
-        -#     完了済
-        -#   .task-bottom__task-list--tasks
-        -#     .task-bottom__task-list--tasks--task
-        -#       アプリのアイデア出し
-        -#     .task-bottom__task-list--tasks--task
-        -#       環境構築
-
-        -# .task-bottom__task-list
-        -#   .task-bottom__task-list--task-title
-        -#     完了済
-        -#   .task-bottom__task-list--tasks
-        -#     .task-bottom__task-list--tasks--task
-        -#       アプリのアイデア出し
-        -#     .task-bottom__task-list--tasks--task
-        -#       環境構築
+            %ul.sortable.sortable-parent
+              - if tasklist.tasks.present?
+                - tasklist.tasks.rank(:row_order).each do |task|
+                  -# = content_tag "li", id: task.id, class: "sortable-child", data: { model_id: task.id, update_url: project_sort_path(task)} do
+                  %li.sortable-child{ "data-model_id": "#{task.id}", "data-text": "#{task.text}","data-update_url": "#{project_sort_path(task.id)}"}
+                    .task-bottom__task-list--tasks--task
+                      = task.text
+          .new-task
+            新しくカードを作る
