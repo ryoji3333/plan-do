@@ -16,12 +16,17 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @tasklists = Tasklist.where(project_id: @project.id)
-    @tasks = Task.where(project_id: @project.id)
+    @tasklists = Tasklist.where(project_id: @project.id).rank(:row_order)
+  end
+
+  def update
+    # Task.create(task_params)
+    # head :no_content
   end
 
   private
   def project_params
     params.require(:project).permit(:name, :finish_date, :finish, :created_at, :updated_at).merge(user_id: current_user.id)
   end
+  
 end

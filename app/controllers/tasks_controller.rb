@@ -13,5 +13,18 @@ class TasksController < ApplicationController
   end
 
   def update
+    Task.update(task_params)
+    head :no_content
+  end
+
+  def sort
+    tasks = Task.find(params[:task_id])
+    tasks.update(task_params)
+    head :no_content
+  end
+
+  private
+  def task_params
+    params.permit(:id, :row_order_position)
   end
 end
