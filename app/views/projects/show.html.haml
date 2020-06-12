@@ -36,8 +36,7 @@
             %ul.sortable.sortable-parent
               - if tasklist.tasks.present?
                 - tasklist.tasks.rank(:row_order).each do |task|
-                  -# = content_tag "li", id: task.id, class: "sortable-child", data: { model_id: task.id, update_url: project_sort_path(task)} do
-                  %li.sortable-child{ "data-model_id": "#{task.id}", "data-text": "#{task.text}","data-update_url": "#{project_sort_path(task.id)}"}
+                  %li.sortable-child{ "data-model_id": "#{task.id}", "data-task_text": "#{task.text}", "data-update_url": "#{task_sort_path(task.id)}"}
                     .task-bottom__task-list--tasks--task
                       = task.text
           .new-task

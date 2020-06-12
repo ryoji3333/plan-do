@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #   put :sort
   # end
 
-  resources :projects do
+  resources :tasks do
     put :sort
   end
 
