@@ -44,16 +44,14 @@
   .task-bottom{
     width: 100vw;
     margin-top: 10px;
-    display: flex;
     overflow-x: scroll;
     padding-bottom: 20px;
-    // background: red;
     &__task-list{
       max-height: 550px;
-      width: 270px;
-      height: 100%;
+      width: 260px;
       background-color: #eaf3ff;
       margin-left: 15px;
+      padding-bottom: 5px;
       &--task-title{
       width: 240px;
       background-color: #516ab6;
@@ -76,9 +74,15 @@
   }
 }
 
-.sortable-parent{
+.sortable-tasklist-parent{
+  display: flex;
+  .sortable-tasklist-child{
+  }
+}
+
+.sortable-task-parent{
   min-height: 20px;
-  .sortable-child{
+  .sortable-task-child{
   }
 }
 
@@ -87,4 +91,10 @@
   padding: 5px 10px 5px 20px;
   margin: 10px 10px 10px 10px;
   width: 200px;
+}
+
+.sortable-tasklist-placeholder{
+  background: darken(#f5f5f5,10%);
+  margin: 0 10px;
+  width: 260px;
 }
