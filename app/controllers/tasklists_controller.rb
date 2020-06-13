@@ -1,12 +1,17 @@
 class TasklistsController < ApplicationController
+  def update
+    Tasklist.update(tasklist_params)
+    head :no_content
+  end
+
   def sort
-    tasklists = tasklists.find(params[:tasklist_id])
+    tasklists = Tasklist.find(params[:tasklist_id])
     tasklists.update(tasklist_params)
-    render nothing: true
+    head :no_content
   end
 
   private
   def tasklist_params
-    params.require(:tasklist).permit(:row_order_position)
+    params.permit(:id ,:row_order_position)
   end
 end

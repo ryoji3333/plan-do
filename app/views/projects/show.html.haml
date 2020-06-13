@@ -30,7 +30,7 @@
     %ul.sortable-tasklist.sortable-tasklist-parent
       - if @tasklists.present?
         - @tasklists.each do |tasklist|
-          %li.sortable-tasklist-child{ "data-model_id": "#{tasklist.id}"}
+          %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}"}
             .task-bottom__task-list
               .task-bottom__task-list--task-title
                 = tasklist.name
@@ -38,8 +38,8 @@
                 %ul.sortable.sortable-task-parent
                   - if tasklist.tasks.present?
                     - tasklist.tasks.rank(:row_order).each do |task|
-                      %li.sortable-task-child{ "data-model_id": "#{task.id}", "data-task_text": "#{task.text}", "data-update_url": "#{task_sort_path(task.id)}"}
+                      %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
                         .task-bottom__task-list--tasks--task
                           = task.text
-          -# .new-task
-          -#   新しくカードを作る
+                .new-task
+                  新しくカードを作る
