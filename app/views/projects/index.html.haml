@@ -8,7 +8,7 @@
           新規プロジェクトを作成する
       .container
         .menu
-          .menu-item
+          .menu-item.project-active
             進行中(
             = @projects.where(finish: false).length
             )
@@ -16,13 +16,18 @@
             完了済(
             = @projects.where(finish: true).length
             )
-        .contents
-          - @projects.each do |project|
+        .contents.show
+          - @projects.where(finish:false).each do |project|
             = link_to "projects/#{project.id}", class: "projects-link" do
               .content
                 = icon('fas', 'arrow-alt-circle-right')
                 = project.name
-              
+        .contents
+          - @projects.where(finish:true).each do |project|
+            = link_to "projects/#{project.id}", class: "projects-link" do
+              .content-finish
+                = icon('fas', 'arrow-alt-circle-right')
+                = project.name
 -else
   登録者募集中！
 

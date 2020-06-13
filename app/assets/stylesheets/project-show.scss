@@ -3,12 +3,13 @@
     display: flex;
     justify-content: space-between;
     &__left{
-    height: 40px;
-    margin-top: 10px;  
+    width: 70%;
     display: flex;
+    flex-wrap: wrap;
     font-size: 20px;
       &__project-name{
-        height: 40px;
+        min-height: 40px;
+        margin-top: 10px;  
         margin-left: 15px;
         line-height: 40px;
         padding: 0 10px;
@@ -22,6 +23,7 @@
       }
       &__p-progress{
         height: 40px;
+        margin-top: 10px;  
         margin-left: 15px;
         line-height: 40px;
         padding: 0 10px;
@@ -31,6 +33,7 @@
       }
       &__p-date{
         height: 40px;
+        margin-top: 10px;  
         margin-left: 15px;
         line-height: 40px;
         padding: 0 10px;
@@ -47,7 +50,6 @@
       }
     }
     &__right{
-      height: 40px;
       margin-top: 10px; 
       display: flex;
       font-size: 18px;
@@ -58,25 +60,25 @@
         height: 40px;
         margin-left: 15px;
         line-height: 40px;
-        padding: 0 10px;
+        padding: 0 20px;
         color: #fff;
-        background:#696969;  
+        background: #808080;
         border-radius: 5px;      
       }
       &__edit:hover{
-        background: lighten(#696969,10%);
+        background: lighten(#808080,10%);
       }
       &__finish{
         height: 40px;
         margin:0 5px;
         line-height: 40px;
-        padding: 0 10px;
+        padding: 0 20px;
         color: #fff;
-        background: lighten(#b22222,15%);
+        background: #dc143c;
         border-radius: 5px;
       }
       &__finish:hover{
-        background: lighten(#b22222,20%);
+        background: lighten(#dc143c,10%);
       }
     }
   }
