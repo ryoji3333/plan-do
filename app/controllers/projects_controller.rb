@@ -19,9 +19,32 @@ class ProjectsController < ApplicationController
     @tasklists = Tasklist.where(project_id: @project.id).rank(:row_order)
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
   def update
-    # Task.create(task_params)
-    # head :no_content
+    project = Project.find(params[:id])
+    project.update(project_params)
+    redirect_to project_path(params[:id])
+  end
+
+  def finish
+    project = Project.find(params[:id])
+    project.update(finish: true)
+    redirect_to root_path
+  end
+
+  def return
+    project = Project.find(params[:id])
+    project.update(finish: false)
+    redirect_to root_path
+  end
+
+  def destroy
+    project = Project.find(params[:id])
+    project.destroy
+    redirect_to root_path
   end
 
   private

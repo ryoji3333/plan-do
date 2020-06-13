@@ -2,42 +2,58 @@
 
 .task-content
   .task-top
-    .task-top__project-name
-      = @project.name
-    .task-top__p-progress
-      達成率50%(5/10)
-    .task-top__p-date
-      -require 'date'
-      -today = Date.today
-      -future = @project.finish_date
-      -remainingDay = future - today
-      -if remainingDay <= 7
-        完了予定日まであと
-        %span.warning
-          = remainingDay.to_i
-        日（
-        = @project.finish_date
-        ）
-      - else
-        完了予定日まであと
-        %span.normal
-          = remainingDay.to_i
-        日（
-        = @project.finish_date
-        ）
-
+    .task-top__left
+      .task-top__left__project-name
+        = @project.name
+        -if @project.finish == true
+          %span.project-name-finish
+            (完了済)
+      .task-top__left__p-progress
+        達成率50%(5/10)
+      .task-top__left__p-date
+        -if @project.finish_date.present?
+          -require 'date'
+          -today = Date.today
+          -future = @project.finish_date
+          -remainingDay = future - today
+          -if remainingDay <= 7
+            完了予定日まであと
+            %span.warning
+              = remainingDay.to_i
+            日（
+            = @project.finish_date
+            ）
+          -else
+            完了予定日まであと
+            %span.normal
+              = remainingDay.to_i
+            日（
+            = @project.finish_date
+            ）
+    .task-top__right
+      = link_to edit_project_path do
+        .task-top__right__edit
+          プロジェクトの編集
+      -if @project.finish == false
+        = link_to finish_project_path(params[:id]), data: { confirm: 'このプロジェクトを完了済に移動しますか？' }  do
+          .task-top__right__finish
+            完了済に移動
+      -else
+        = link_to return_project_path(params[:id]), data: { confirm: 'このプロジェクトを進行中に移動しますか？' } do
+          .task-top__right__finish
+            進行中に移動
   .task-bottom
     %ul.sortable-tasklist.sortable-tasklist-parent
-      - if @tasklists.present?
-        - @tasklists.each do |tasklist|
+      -if @tasklists.present?
+        -@tasklists.each do |tasklist|
           %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}"}
             .task-bottom__task-list
               .task-bottom__task-list--task-title
                 = tasklist.name
               .task-bottom__task-list--tasks
                 %ul.sortable.sortable-task-parent
-                  - if tasklist.tasks.present?
-                    - tasklist.tasks.rank(:row_order).each do |task|
+                  -if tasklist.tasks.present?
+                    -tasklist.tasks.rank(:row_order).each do |task|
                       %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
                         .task-bottom__task-list--tasks--task
                           = task.text

@@ -1,9 +1,10 @@
 .header
-  .header__title
-    .header__title--icon
-      = icon('fas', 'leaf')
-    .header__title--title
-      PlanDo
+  = link_to root_path, class:"title-link" do
+    .header__title
+      .header__title--icon
+        = icon('fas', 'leaf')
+      .header__title--title
+        PlanDo
   .header__user
     -if user_signed_in?
       .header__user--nickname

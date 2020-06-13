@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :projects do
+    member do
+      get :finish
+    end
+
+    member do
+      get :return
+    end
+  end
+
   resources :tasklists do
     put :sort
   end
@@ -10,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   root "projects#index"
-  resources :projects, only: [:index,:new,:create,:show]
+  resources :projects
   resources :tasks, only: [:index,:new,:create,:edit,:update]
 end

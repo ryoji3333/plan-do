@@ -1,0 +1,18 @@
+.project-new
+  .project-edit__text
+    = icon('fas', 'edit')
+    プロジェクトを編集する
+  .project-new__form
+    =form_for(@project) do |f|
+      .project-new__form__name
+        プロジェクトの名前を設定
+        %br/
+        = f.text_field :name,class:"form-name",placeholder: "プロジェクト名"
+      .project-new__form__finish
+        完了予定日の設定
+        %br/
+        = f.text_field :finish_date,class:"form-finish", placeholder: "完了予定日（例：2020/01/01）", id: "datepicker"
+      .project-new__form__btn-form
+        = f.submit "プロジェクトを更新する",class:"form-btn"
+      .project-new__form__btn-form-destroy
+        = link_to "プロジェクトを削除する", project_path(@project.id), method: :delete, class:"form-btn-destroy", data: { confirm: 'このプロジェクトを本当に削除しますか？（削除したプロジェクトは元に戻すことができません）' }
