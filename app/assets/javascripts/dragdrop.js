@@ -11,12 +11,9 @@ $(function() {
       ui.placeholder.height(ui.helper[0].scrollHeight);
     },
 
-    update: function(e, ui){
-      // console.log(ui.item.attr('data-model_id'));
+    update: function(e, ui){      
       let item = ui.item;
       let item_data = item.data();
-      let params = {_method: 'put'};
-      params = item_data.model_id;
       params = { row_order_position: item.index() };
       $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
         var token = $('meta[name="csrf-token"]').attr('content');
@@ -43,12 +40,9 @@ $(function() {
     tolerance: 'pointer',
 
     update: function(e, ui){
-      // console.log(ui.item.attr('data-model_id'));
       let item = ui.item;
       let item_data = item.data();
-      let params = {_method: 'put'};
-      params = item_data.model_id;
-      params = { row_order_position: item.index() };
+      let params = { row_order_position: item.index() };
       $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
         var token = $('meta[name="csrf-token"]').attr('content');
         return jqXHR.setRequestHeader('X-CSRF-Token', token);

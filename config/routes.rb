@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # resources :tasklists do
-  #   put :sort
-  # end
+  resources :tasklists do
+    put :sort
+  end
 
   resources :tasks do
     put :sort
