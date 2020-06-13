@@ -1,43 +1,82 @@
 .task-content{
   .task-top{
-    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    &__left{
     height: 40px;
     margin-top: 10px;  
     display: flex;
     font-size: 20px;
-    &__project-name{
-      height: 40px;
-      background-color: gray;
-      margin-left: 15px;
-      line-height: 40px;
-      padding: 0 10px 0 10px;
-      color: #232323;
-      background: #f4f4f4;
-      border-left: solid 10px #7db4e6;
-    }
-    &__p-progress{
-      height: 40px;
-      margin-left: 15px;
-      line-height: 40px;
-      padding: 0 10px 0 10px;
-      color: #232323;
-      background: #fffaf4;
-      border-left: solid 10px #ffaf58;
-    }
-    &__p-date{
-      height: 40px;
-      margin-left: 15px;
-      line-height: 40px;
-      padding: 0 10px 0 10px;
-      color: #232323;
-      background: #fffaf4;
-      border-left: solid 10px #ff7f50;
-      .normal{
-        font-weight: 600;
+      &__project-name{
+        height: 40px;
+        margin-left: 15px;
+        line-height: 40px;
+        padding: 0 10px;
+        color: #232323;
+        background: #f4f4f4;
+        border-left: solid 10px #7db4e6;
+        .project-name-finish{
+          font-weight: 600;
+          color:red;
+        }
       }
-      .warning{
-        font-weight: 600;
-        color: red;
+      &__p-progress{
+        height: 40px;
+        margin-left: 15px;
+        line-height: 40px;
+        padding: 0 10px;
+        color: #232323;
+        background: #fffaf4;
+        border-left: solid 10px #ffaf58;
+      }
+      &__p-date{
+        height: 40px;
+        margin-left: 15px;
+        line-height: 40px;
+        padding: 0 10px;
+        color: #232323;
+        background: #fffaf4;
+        border-left: solid 10px #ff7f50;
+        .normal{
+          font-weight: 600;
+        }
+        .warning{
+          font-weight: 600;
+          color: red;
+        }
+      }
+    }
+    &__right{
+      height: 40px;
+      margin-top: 10px; 
+      display: flex;
+      font-size: 18px;
+      a{
+        text-decoration: none;
+      }
+      &__edit{
+        height: 40px;
+        margin-left: 15px;
+        line-height: 40px;
+        padding: 0 10px;
+        color: #fff;
+        background:#696969;  
+        border-radius: 5px;      
+      }
+      &__edit:hover{
+        background: lighten(#696969,10%);
+      }
+      &__finish{
+        height: 40px;
+        margin:0 5px;
+        line-height: 40px;
+        padding: 0 10px;
+        color: #fff;
+        background: lighten(#b22222,15%);
+        border-radius: 5px;
+      }
+      &__finish:hover{
+        background: lighten(#b22222,20%);
       }
     }
   }
