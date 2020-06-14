@@ -29,5 +29,24 @@
                 = icon('fas', 'arrow-alt-circle-right')
                 = project.name
 -else
-  登録者募集中！
+  .main-image
+    .top-left
+      .top-left__image-title
+        PlanDo
+      .top-left__image-text
+        タスク管理をもっとシンプルに。
 
+    .top-right
+      =link_to new_user_registration_path do
+        .top-right__signup
+          新規登録
+      =link_to new_user_session_path do
+        .top-right__login
+          ログイン
+
+
+-# １、プロジェクトごとにタスクを管理
+
+-# ２、カード形式でタスクを管理
+
+-# ３、直感操作でスムーズなタスク管理
