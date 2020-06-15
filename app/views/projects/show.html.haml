@@ -58,4 +58,14 @@
                         .task-bottom__task-list--tasks--task
                           = task.text
                 .new-task
+                  = icon('fas', 'plus-circle')
                   新しくカードを作る
+    .task-bottom__finish-list
+      .task-bottom__task-list
+        .task-bottom__task-list--task-title.finish-title
+          完了済のタスク
+        .task-bottom__task-list-tasks
+          %ul.sortable.sortable-task-parent
+    .task-bottom__new-list
+      = icon('fas', 'plus-circle')
+      新しくリストを作る
