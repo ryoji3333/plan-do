@@ -154,6 +154,7 @@
 }
 .task-bottom__new-list:hover{
   background: lighten(#516ab6,10%);
+  cursor: pointer;
 }
 
 .new-task{
@@ -211,6 +212,18 @@
       color: darken(gray,20%);
     }
   }
+  .js-modal-close-tasklist{
+    position:absolute;
+    top: 0;
+    margin-right: 15px;
+    right: 0;
+    color: gray;
+    font-size: 30px;
+    &:hover{
+      cursor: pointer;
+      color: darken(gray,20%);
+    }
+  }
   
   .new-task__form__name{
     width: 500px;
@@ -247,4 +260,21 @@
       transform: translateY(4px);
     }
   }
+}
+
+.form-btn-tasklist{
+  width: 300px;
+  height: 50px;
+  margin: 30px auto 10px;
+  font-size: 20px;
+  outline: 0;
+  background: #516ab6;
+  color: white;
+}
+.form-btn-tasklist:hover{
+  background: lighten(#516ab6,20%);
+}
+.form-btn-tasklist:active{
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
 }

@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @tasklists = Tasklist.where(project_id: @project.id).rank(:row_order)
     @task = Task.new
+    @tasklist = Tasklist.new
   end
 
   def edit
@@ -30,11 +31,15 @@ class ProjectsController < ApplicationController
     redirect_to project_path(params[:id])
   end
 
+  def newtasklist
+    Tasklist.create(tasklist_new_params)
+    redirect_to project_path(params[:id])
+  end
+
   def newtask
     Task.create(task_new_params)
     redirect_to project_path(params[:id])
   end
-
 
   def finish
     project = Project.find(params[:id])
@@ -61,5 +66,9 @@ class ProjectsController < ApplicationController
   
   def task_new_params
     params.require(:task).permit(:text,:project_id,:tasklist_id).merge(user_id: current_user.id)
+  end
+
+  def tasklist_new_params
+    params.require(:tasklist).permit(:name,:project_id).merge(user_id: current_user.id)
   end
 end
