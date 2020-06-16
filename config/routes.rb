@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     member do
       post :newtask
     end 
+
+    member do
+      post :newtasklist
+    end 
   end
 
   resources :tasklists do

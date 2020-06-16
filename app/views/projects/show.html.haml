@@ -81,6 +81,19 @@
           完了済のタスク
         .task-bottom__task-list-tasks
           %ul.sortable.sortable-task-parent
-    .task-bottom__new-list
+    .task-bottom__new-list.js-modal-open-tasklist
       = icon('fas', 'plus-circle')
       新しくリストを作る
+
+.modal.js-modal-tasklist
+  .modal__bg.js-modal-close-tasklist
+  .modal__content
+    .js-modal-close-tasklist
+      = icon('fas', 'times')
+    .new-task__form
+      =form_for(@tasklist,url: newtasklist_project_path,method: :post) do |f|
+        = f.hidden_field :project_id, value: @project.id
+        .new-task__form__name
+          = f.text_field :name,class:"form-name",placeholder: "タスクリストの名前を入力"
+        .new-task__form__btn-form
+          = f.submit "タスクリストを作成する",class:"form-btn-tasklist"

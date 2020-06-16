@@ -11,3 +11,16 @@ $(function(){
   });
 
 });
+
+$(function(){
+  $('.js-modal-open-tasklist').on('click',function(){
+      $( '.js-modal-tasklist' ).fadeIn();
+      $('input:visible').eq(0).focus();
+      return false;
+  });
+  $('.js-modal-close-tasklist').on('click',function(){
+      $('.js-modal-tasklist').fadeOut();
+      return false;
+  });
+
+});
