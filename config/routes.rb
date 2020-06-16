@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     member do
       get :return
     end
+
+    member do
+      post :newtask
+    end 
   end
 
   resources :tasklists do
@@ -28,6 +32,5 @@ Rails.application.routes.draw do
   end
 
   root "projects#index"
-  resources :projects
   resources :tasks, only: [:index,:new,:create,:edit,:update]
 end

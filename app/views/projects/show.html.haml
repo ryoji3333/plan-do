@@ -50,12 +50,21 @@
             .task-bottom__task-list
               .task-bottom__task-list--task-title
                 = tasklist.name
+
               .modal.js-modal{data: {id: i}}
                 .modal__bg.js-modal-close
                 .modal__content
-                  = i
                   .js-modal-close
-                    閉じる
+                    = icon('fas', 'times')
+                  .new-task__form
+                    =form_for(@task,url: newtask_project_path,method: :post, html:{tasklist_id: tasklist.id}) do |f|
+                      = f.hidden_field :project_id, value: @project.id
+                      = f.hidden_field :tasklist_id, value: tasklist.id
+                      .new-task__form__name
+                        = f.text_field :text,class:"form-name",placeholder: "タスクを入力"
+                      .new-task__form__btn-form
+                        = f.submit "タスクを作成する",class:"form-btn"
+
               .task-bottom__task-list--tasks
                 %ul.sortable.sortable-task-parent
                   -if tasklist.tasks.present?

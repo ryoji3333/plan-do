@@ -7,6 +7,8 @@ class TasksController < ApplicationController
   end
 
   def create
+    Task.create(task_new_params)
+    redirect_to project_path(params[:id])
   end
 
   def edit
@@ -27,4 +29,5 @@ class TasksController < ApplicationController
   def task_params
     params.permit(:id, :row_order_position)
   end
+
 end
