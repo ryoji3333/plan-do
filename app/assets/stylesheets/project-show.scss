@@ -99,6 +99,9 @@
       background-color: #516ab6;
       color: white;
       padding: 5px 10px 5px 10px;
+        &:hover{
+          cursor: pointer;
+        }
       }
       &--tasks{
         // overflow-y: scroll;
@@ -147,7 +150,7 @@
 
 .task-bottom__new-list{
   height: 24px;
-  background: #516ab6;
+  background: #1e90ff;
   color: white;
   padding: 5px 20px;
   margin-left: 15px;
@@ -156,7 +159,7 @@
   white-space: nowrap;
 }
 .task-bottom__new-list:hover{
-  background: lighten(#516ab6,10%);
+  background: lighten(#1e90ff,10%);
   cursor: pointer;
 }
 
@@ -271,11 +274,11 @@
   margin: 30px auto 10px;
   font-size: 20px;
   outline: 0;
-  background: #516ab6;
+  background: #1e90ff;
   color: white;
 }
 .form-btn-tasklist:hover{
-  background: lighten(#516ab6,20%);
+  background: lighten(#1e90ff,20%);
 }
 .form-btn-tasklist:active{
   -webkit-transform: translateY(4px);
@@ -300,6 +303,36 @@
 }
 
 .js-modal-close-edittask{
+  position:absolute;
+  top: 0;
+  padding-right: 15px;
+  right: 0;
+  color: gray;
+  font-size: 30px;
+  &:hover{
+    cursor: pointer;
+    color: darken(gray,20%);
+  }
+}
+
+.form-btn-tasklistedit{
+  width: 300px;
+  height: 50px;
+  margin: 30px auto 10px;
+  font-size: 20px;
+  outline: 0;
+  background: #516ab6;
+  color: white;
+}
+.form-btn-tasklistedit:hover{
+  background: lighten(#516ab6,10%);
+}
+.form-btn-tasklistedit:active{
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+}
+
+.js-modal-close-edittasklist{
   position:absolute;
   top: 0;
   padding-right: 15px;
