@@ -24,10 +24,14 @@ Rails.application.routes.draw do
 
     member do
       post :newtasklist
-    end 
+    end
 
     member do
       post :updatetask
+    end
+
+    member do
+      post :updatetasklist
     end
   end
 

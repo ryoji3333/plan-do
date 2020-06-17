@@ -47,6 +47,12 @@ class ProjectsController < ApplicationController
     redirect_to project_path(params[:id])
   end
 
+  def updatetasklist
+    tasklist = Tasklist.find(params[:tasklist_id])
+    tasklist.update(tasklist_edit_params)
+    redirect_to project_path(params[:id])
+  end
+
   def finish
     project = Project.find(params[:id])
     project.update(finish: true)
@@ -80,5 +86,9 @@ class ProjectsController < ApplicationController
 
   def task_edit_params
     params.require(:task).permit(:text,:project_id,:tasklist_id,:id).merge(user_id: current_user.id)
+  end
+
+  def tasklist_edit_params
+    params.require(:tasklist).permit(:name,:project_id,:id).merge(user_id: current_user.id)
   end
 end

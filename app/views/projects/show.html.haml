@@ -48,8 +48,21 @@
         -@tasklists.each do |tasklist|
           %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}"}
             .task-bottom__task-list
-              .task-bottom__task-list--task-title
+              .task-bottom__task-list--task-title.js-modal-open-edittasklist{data: {id:tasklist.id}}
                 = tasklist.name
+              
+              .modal.js-modal-edittasklist{data: {id: tasklist.id}}
+                .modal__bg.js-modal-close-edittasklist
+                .modal__content
+                  .js-modal-close-edittasklist
+                    = icon('fas', 'times')
+                  .new-task__form
+                    =form_for(tasklist,url: updatetasklist_project_path(tasklist_id: tasklist.id),method: :post, html:{class:'send-edittasklist-form'}) do |f|
+                      = f.hidden_field :project_id, value: @project.id
+                      .new-task__form__name
+                        = f.text_field :name,class:"form-name",placeholder: "タスクリストの名前を入力"
+                      .new-task__form__btn-form
+                        = f.submit "タスクリストを更新する",class:"form-btn-tasklistedit"
 
               .modal.js-modal{data: {id: tasklist.id}}
                 .modal__bg.js-modal-close
@@ -57,7 +70,7 @@
                   .js-modal-close
                     = icon('fas', 'times')
                   .new-task__form
-                    =form_for(@task,url: newtask_project_path,method: :post, html:{tasklist_id: tasklist.id}) do |f|
+                    =form_for(@task,url: newtask_project_path,method: :post, html:{tasklist_id: tasklist.id, class:'send-task-form'}) do |f|
                       = f.hidden_field :project_id, value: @project.id
                       = f.hidden_field :tasklist_id, value: tasklist.id
                       .new-task__form__name
@@ -78,7 +91,7 @@
                             .js-modal-close-edittask
                               = icon('fas', 'times')
                             .new-task__form
-                              =form_for(task,url: updatetask_project_path(task_id:task.id),method: :post, html:{tasklist_id: tasklist.id}) do |f|
+                              =form_for(task,url: updatetask_project_path(task_id:task.id),method: :post, html:{tasklist_id: tasklist.id,class:'send-edittask-form'}) do |f|
                                 = f.hidden_field :project_id, value: @project.id
                                 = f.hidden_field :tasklist_id, value: tasklist.id
                                 .new-task__form__name
@@ -105,7 +118,7 @@
     .js-modal-close-tasklist
       = icon('fas', 'times')
     .new-task__form
-      =form_for(@tasklist,url: newtasklist_project_path,method: :post) do |f|
+      =form_for(@tasklist,url: newtasklist_project_path,method: :post,html:{class:'send-tasklist-form'}) do |f|
         = f.hidden_field :project_id, value: @project.id
         .new-task__form__name
           = f.text_field :name,class:"form-name",placeholder: "タスクリストの名前を入力"
