@@ -10,8 +10,8 @@
             (完了済)
       .task-top__left__p-progress
         達成率50%(5/10)
-      .task-top__left__p-date
-        -if @project.finish_date.present?
+      -if @project.finish_date.present?
+        .task-top__left__p-date
           -require 'date'
           -today = Date.today
           -future = @project.finish_date
@@ -45,13 +45,13 @@
   .task-bottom
     %ul.sortable-tasklist.sortable-tasklist-parent
       -if @tasklists.present?
-        -@tasklists.each.with_index(1) do |tasklist,i|
+        -@tasklists.each do |tasklist|
           %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}"}
             .task-bottom__task-list
               .task-bottom__task-list--task-title
                 = tasklist.name
 
-              .modal.js-modal{data: {id: i}}
+              .modal.js-modal{data: {id: tasklist.id}}
                 .modal__bg.js-modal-close
                 .modal__content
                   .js-modal-close
@@ -70,11 +70,25 @@
                   -if tasklist.tasks.present?
                     -tasklist.tasks.rank(:row_order).each do |task|
                       %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
-                        .task-bottom__task-list--tasks--task
+                        .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id:task.id}}
                           = task.text
-                .new-task.js-modal-open{data: {id: i}}
+                        .modal.js-modal-edittask{data: {id:task.id}}
+                          .modal__bg.js-modal-close-edittask
+                          .modal__content
+                            .js-modal-close-edittask
+                              = icon('fas', 'times')
+                            .new-task__form
+                              =form_for(task,url: updatetask_project_path(task_id:task.id),method: :post, html:{tasklist_id: tasklist.id}) do |f|
+                                = f.hidden_field :project_id, value: @project.id
+                                = f.hidden_field :tasklist_id, value: tasklist.id
+                                .new-task__form__name
+                                  = f.text_field :text,class:"form-name",placeholder: "タスクを入力"
+                                .new-task__form__btn-form
+                                  = f.submit "タスクを更新する",class:"form-btn-taskedit"
+
+                .new-task.js-modal-open{data: {id: tasklist.id}}
                   = icon('fas', 'plus-circle')
-                  新しくカードを作る
+                  新しいタスクを作成
     .task-bottom__finish-list
       .task-bottom__task-list
         .task-bottom__task-list--task-title.finish-title
@@ -83,7 +97,7 @@
           %ul.sortable.sortable-task-parent
     .task-bottom__new-list.js-modal-open-tasklist
       = icon('fas', 'plus-circle')
-      新しくリストを作る
+      新しいリストを作成
 
 .modal.js-modal-tasklist
   .modal__bg.js-modal-close-tasklist
