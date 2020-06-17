@@ -110,6 +110,9 @@
         color: #232323;
         background: #e4fcff;
         border-left: solid 10px #1dc1d6;
+          &:hover{
+            cursor: pointer;
+          }
         }
       }
     }
@@ -173,7 +176,7 @@
 }
 
 .finish-title{
-  background: gray!important;
+  background: darken(gray,20%)!important;
 }
 
 .modal{
@@ -203,7 +206,7 @@
   .js-modal-close{
     position:absolute;
     top: 0;
-    margin-right: 15px;
+    padding-right: 15px;
     right: 0;
     color: gray;
     font-size: 30px;
@@ -215,7 +218,7 @@
   .js-modal-close-tasklist{
     position:absolute;
     top: 0;
-    margin-right: 15px;
+    padding-right: 15px;
     right: 0;
     color: gray;
     font-size: 30px;
@@ -249,11 +252,11 @@
       margin: 30px auto 10px;
       font-size: 20px;
       outline: 0;
-      background: darken(#f5f5f5,40%);
+      background: darken(#9acd32,10%);;
       color: white;
     }
     .form-btn:hover{
-      background: darken(#f5f5f5,20%);
+      background:#9acd32;
     }
     .form-btn:active{
       -webkit-transform: translateY(4px);
@@ -277,4 +280,34 @@
 .form-btn-tasklist:active{
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
+}
+
+.form-btn-taskedit{
+  width: 300px;
+  height: 50px;
+  margin: 30px auto 10px;
+  font-size: 20px;
+  outline: 0;
+  background: #1dc1d6;
+  color: white;
+}
+.form-btn-taskedit:hover{
+  background: lighten(#1dc1d6,10%);
+}
+.form-btn-taskedit:active{
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+}
+
+.js-modal-close-edittask{
+  position:absolute;
+  top: 0;
+  padding-right: 15px;
+  right: 0;
+  color: gray;
+  font-size: 30px;
+  &:hover{
+    cursor: pointer;
+    color: darken(gray,20%);
+  }
 }
