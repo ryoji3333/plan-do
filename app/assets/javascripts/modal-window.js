@@ -20,7 +20,7 @@ $(function(){
   });
   $('.js-modal-close-tasklist').on('click',function(){
       $('.js-modal-tasklist').hide();
-      $('.send-tasklist-form').submit();
+      // $('.send-tasklist-form').submit();
       return false;
   });
 });

@@ -31,15 +31,17 @@ ActiveRecord::Schema.define(version: 20200606042246) do
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "text",                        null: false
+    t.string   "text",                            null: false
+    t.string   "detail"
     t.date     "finish_date"
-    t.boolean  "finish",      default: false, null: false
-    t.integer  "user_id",                     null: false
-    t.integer  "project_id",                  null: false
-    t.integer  "tasklist_id",                 null: false
+    t.boolean  "finish",      default: false,     null: false
+    t.integer  "user_id",                         null: false
+    t.integer  "project_id",                      null: false
+    t.integer  "tasklist_id",                     null: false
     t.integer  "row_order"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "color",       default: "#1dc1d6"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

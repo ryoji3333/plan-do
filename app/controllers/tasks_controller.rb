@@ -19,6 +19,12 @@ class TasksController < ApplicationController
     head :no_content
   end
 
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+    redirect_to project_path(params[:project_id])
+  end
+
   def sort
     tasks = Task.find(params[:task_id])
     tasks.update(task_params)

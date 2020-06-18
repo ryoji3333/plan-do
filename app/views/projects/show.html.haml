@@ -53,7 +53,7 @@
               
               .modal.js-modal-edittasklist{data: {id: tasklist.id}}
                 .modal__bg.js-modal-close-edittasklist
-                .modal__content
+                .modal__content-tasklist-edit
                   .js-modal-close-edittasklist
                     = icon('fas', 'times')
                   .new-task__form
@@ -61,8 +61,12 @@
                       = f.hidden_field :project_id, value: @project.id
                       .new-task__form__name
                         = f.text_field :name,class:"form-name",placeholder: "タスクリストの名前を入力"
-                      .new-task__form__btn-form
-                        = f.submit "タスクリストを更新する",class:"form-btn-tasklistedit"
+                      .tasklistedit-btns
+                        .new-task__form__btn-form
+                          = f.submit "タスクリストを更新する",class:"form-btn-tasklistedit"
+                        = link_to tasklist_path(id: tasklist.id, project_id: tasklist.project_id), method: :delete,class:'form-btn-destroy-tasklist-link' do
+                          .form-btn-destroy-tasklist
+                            タスクリストを削除する
 
               .modal.js-modal{data: {id: tasklist.id}}
                 .modal__bg.js-modal-close
@@ -83,11 +87,11 @@
                   -if tasklist.tasks.present?
                     -tasklist.tasks.rank(:row_order).each do |task|
                       %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
-                        .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id:task.id}}
+                        .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id:task.id},style: 'border-left: solid 10px' + task.color + ';'}
                           = task.text
                         .modal.js-modal-edittask{data: {id:task.id}}
                           .modal__bg.js-modal-close-edittask
-                          .modal__content
+                          .modal__content-edit
                             .js-modal-close-edittask
                               = icon('fas', 'times')
                             .new-task__form
@@ -96,10 +100,30 @@
                                 = f.hidden_field :tasklist_id, value: tasklist.id
                                 .new-task__form__name
                                   = f.text_field :text,class:"form-name",placeholder: "タスクを入力"
-                                .new-task__form__btn-form
-                                  = f.submit "タスクを更新する",class:"form-btn-taskedit"
+                                .new-task__form__detail
+                                  .taskform-detail-text
+                                    = icon('fas', 'bars')
+                                    詳細情報
+                                  = f.text_area :detail,class:"form-detail",placeholder: "詳細情報を入力"
+                                .new-task__form__finish-date
+                                  .taskform-finish-text
+                                    = icon('fas', 'clock')
+                                    完了予定日
+                                  = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", id: "datepicker"
+                                .new-task__form__color
+                                  .taskform-color-text
+                                    = icon('fas', 'palette')
+                                    タスクカラーの変更
+                                  = f.color_field :color,class:"form-color"
+                                .taskedit-btns
+                                  .new-task__form__btn-form-taskedit
+                                    = f.submit "タスクを更新する",class:"form-btn-taskedit"
+                                  = link_to task_path(id: task.id, project_id: task.project_id), method: :delete, class:"form-btn-destroy-task-link" do
+                                    .form-btn-destroy-task
+                                      タスクを削除する
 
-                .new-task.js-modal-open{data: {id: tasklist.id}}
+              .new-task-frame.js-modal-open{data: {id: tasklist.id}}
+                .new-task
                   = icon('fas', 'plus-circle')
                   新しいタスクを作成
     .task-bottom__finish-list
