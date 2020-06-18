@@ -84,6 +84,7 @@
   }
   .task-bottom{
     width: 100vw;
+    height: calc(100vh - 160px);
     margin-top: 10px;
     overflow-x: scroll;
     padding-bottom: 20px;
@@ -91,9 +92,7 @@
     &__task-list{
       max-height: 550px;
       width: 260px;
-      background-color: #eaf3ff;
       margin-left: 15px;
-      padding-bottom: 5px;
       &--task-title{
       width: 240px;
       background-color: #516ab6;
@@ -104,7 +103,9 @@
         }
       }
       &--tasks{
-        // overflow-y: scroll;
+        overflow-y: scroll;
+        background: #eaf3ff;
+        max-height: 480px;
         &--task{
         width: 200px;
         font-size: 16px;
@@ -112,7 +113,6 @@
         margin: 10px 10px 10px 10px;
         color: #232323;
         background: #e4fcff;
-        // border-left: solid 10px #1dc1d6;
           &:hover{
             cursor: pointer;
           }
@@ -163,21 +163,26 @@
   cursor: pointer;
 }
 
-.new-task{
-  width: 220px;
-  font-size: 16px;
-  padding: 5px 0;
-  margin: 0 auto;
-  color: #232323;
-  text-align: center;
-  border-radius: 20px;
-  font-size: 14px;
+.new-task-frame{
+  width: 260px;
+  height: 40px;
+  background-color: #eaf3ff;
+  padding-top:5px;
+  .new-task{
+    width: 220px;
+    font-size: 16px;
+    padding: 5px 0;
+    margin: 0 auto;
+    color: #232323;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  .new-task:hover{
+    background: lighten(#516ab6,40%);
+    cursor: pointer;
+  }
 }
-.new-task:hover{
-  background: lighten(#516ab6,40%);
-  cursor: pointer;
-}
-
 .finish-title{
   background: darken(gray,20%)!important;
 }
