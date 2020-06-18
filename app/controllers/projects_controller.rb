@@ -85,7 +85,7 @@ class ProjectsController < ApplicationController
   end
 
   def task_edit_params
-    params.require(:task).permit(:text,:project_id,:tasklist_id,:id).merge(user_id: current_user.id)
+    params.require(:task).permit(:text,:project_id,:tasklist_id,:id,:detail,:finish_date,:color).merge(user_id: current_user.id)
   end
 
   def tasklist_edit_params

@@ -112,7 +112,7 @@
         margin: 10px 10px 10px 10px;
         color: #232323;
         background: #e4fcff;
-        border-left: solid 10px #1dc1d6;
+        // border-left: solid 10px #1dc1d6;
           &:hover{
             cursor: pointer;
           }
@@ -198,7 +198,7 @@
 }
 
 .modal__content{
-  background: #fff;
+  background: #f5f5f5;
   left: 50%;
   padding: 40px;
   position: absolute;
@@ -268,6 +268,202 @@
   }
 }
 
+.modal__content-edit{
+  background: #f5f5f5;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+  height: 90%;
+  .js-modal-close{
+    position:absolute;
+    top: 0;
+    padding-right: 15px;
+    right: 0;
+    color: gray;
+    font-size: 30px;
+    &:hover{
+      cursor: pointer;
+      color: darken(gray,20%);
+    }
+  }
+  .js-modal-close-tasklist{
+    position:absolute;
+    top: 0;
+    padding-right: 15px;
+    right: 0;
+    color: gray;
+    font-size: 30px;
+    &:hover{
+      cursor: pointer;
+      color: darken(gray,20%);
+    }
+  }
+  .new-task__form__name{
+    width: 500px;
+    margin: 0 auto;
+    .form-name{
+      width: 500px;
+      height: 30px;
+      margin: 40px auto 0;
+      outline: 0;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+    .form-name:focus{
+      border: solid 1px #00bfff;
+    }
+  }
+  .taskedit-btns{
+    display: flex;
+    width: 500px;
+    margin: 30px auto 0;
+  }
+  .new-task__form__btn-form-taskedit{
+    width: 300px;
+    margin-right: 40px;
+    .form-btn-taskedit{
+      width: 240px;
+      height: 50px;
+      font-size: 20px;
+      outline: 0;
+      background: #1dc1d6;
+      color: white;
+    }
+    .form-btn-taskedit:hover{
+      background: lighten(#1dc1d6,10%);
+    }
+    .form-btn-taskedit:active{
+      -webkit-transform: translateY(4px);
+      transform: translateY(4px);
+    }
+  }
+  .new-task__form__detail{
+    width: 500px;
+    margin: 15px auto 0;
+    .taskform-detail-text{
+      font-size: 16px;
+    }
+    .form-detail{
+      width: 500px;
+      height: 250px;
+      margin: 5px auto 0;
+      outline: 0;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+    .form-detail:focus{
+      border: solid 1px #00bfff;
+    }
+  }
+  .new-task__form__finish-date{
+    width: 500px;
+    margin: 10px auto 0;
+    .taskform-finish-text{
+      font-size: 16px;
+    }
+    .form-date{
+      width: 500px;
+      height: 30px;
+      margin: 5px auto 0;
+      outline: 0;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+    .form-date:focus{
+      border: solid 1px #00bfff;
+    }
+  }
+  .new-task__form__color{
+    width: 500px;
+    margin: 10px auto 0;
+    .taskform-color-text{
+      font-size: 16px;
+    }
+    .form-color{
+      width: 80px;
+      height: 30px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.modal__content-tasklist-edit{
+  background: #f5f5f5;
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+  height: 30%;
+  .js-modal-close{
+    position:absolute;
+    top: 0;
+    padding-right: 15px;
+    right: 0;
+    color: gray;
+    font-size: 30px;
+    &:hover{
+      cursor: pointer;
+      color: darken(gray,20%);
+    }
+  }
+  .js-modal-close-tasklist{
+    position:absolute;
+    top: 0;
+    padding-right: 15px;
+    right: 0;
+    color: gray;
+    font-size: 30px;
+    &:hover{
+      cursor: pointer;
+      color: darken(gray,20%);
+    }
+  }
+  
+  .new-task__form__name{
+    width: 500px;
+    margin: 0 auto;
+    .form-name{
+      width: 500px;
+      height: 50px;
+      margin: 40px auto 0;
+      outline: 0;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+    .form-name:focus{
+      border: solid 1px #00bfff;
+    }
+  }
+  .new-task__form__btn-form{
+    width: 300px;
+    margin-right: 20px;
+    .form-btn-tasklistedit{
+      width: 300px;
+      height: 50px;
+      font-size: 20px;
+      outline: 0;
+      background: #516ab6;
+      color: white;
+    }
+    .form-btn-tasklistedit:hover{
+      background: lighten(#516ab6,10%);
+    }
+    .form-btn-tasklistedit:active{
+      -webkit-transform: translateY(4px);
+      transform: translateY(4px);
+    }
+  }
+}
+.tasklistedit-btns{
+  display: flex;
+  width: 640px;
+  margin: 40px auto 0;
+}
+
 .form-btn-tasklist{
   width: 300px;
   height: 50px;
@@ -285,23 +481,6 @@
   transform: translateY(4px);
 }
 
-.form-btn-taskedit{
-  width: 300px;
-  height: 50px;
-  margin: 30px auto 10px;
-  font-size: 20px;
-  outline: 0;
-  background: #1dc1d6;
-  color: white;
-}
-.form-btn-taskedit:hover{
-  background: lighten(#1dc1d6,10%);
-}
-.form-btn-taskedit:active{
-  -webkit-transform: translateY(4px);
-  transform: translateY(4px);
-}
-
 .js-modal-close-edittask{
   position:absolute;
   top: 0;
@@ -315,23 +494,6 @@
   }
 }
 
-.form-btn-tasklistedit{
-  width: 300px;
-  height: 50px;
-  margin: 30px auto 10px;
-  font-size: 20px;
-  outline: 0;
-  background: #516ab6;
-  color: white;
-}
-.form-btn-tasklistedit:hover{
-  background: lighten(#516ab6,10%);
-}
-.form-btn-tasklistedit:active{
-  -webkit-transform: translateY(4px);
-  transform: translateY(4px);
-}
-
 .js-modal-close-edittasklist{
   position:absolute;
   top: 0;
@@ -343,4 +505,42 @@
     cursor: pointer;
     color: darken(gray,20%);
   }
+}
+
+.form-btn-destroy-tasklist{
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  outline: 0;
+  background: red;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+.form-btn-destroy-tasklist:hover{
+  background: lighten(red,20%);
+}
+.form-btn-destroy-tasklist-link{
+  text-decoration: none;
+}
+
+.form-btn-destroy-task{
+  width: 240px;
+  height: 50px;
+  font-size: 20px;
+  outline: 0;
+  background: red;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+.form-btn-destroy-task:hover{
+  background: lighten(red,20%);
+}
+.form-btn-destroy-task-link{
+  text-decoration: none;
+}
+
+#ui-datepicker {
+  z-index: 9999 !important;
 }
