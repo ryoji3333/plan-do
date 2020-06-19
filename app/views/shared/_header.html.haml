@@ -7,6 +7,8 @@
         PlanDo
   .header__user
     -if user_signed_in?
+      .header__user--project
+        =link_to "プロジェクト一覧",projects_path, class: 'user-project'
       .header__user--nickname
         =link_to "#{current_user.nickname}様",edit_user_registration_path, class: 'user-name'
       .header__user--logout

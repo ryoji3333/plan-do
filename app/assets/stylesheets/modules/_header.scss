@@ -21,6 +21,21 @@
   }
   &__user{
     display:flex;
+    .user-project{
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.3em 1em;
+      text-decoration: none;
+      color: #ffffff;
+      background:#516ab6;
+      border: solid 2px#516ab6;
+      border-radius: 3px;
+      margin-right: 15px;
+    }
+    .user-project:hover{
+      background: lighten(#516ab6,10%);
+      border: solid 2px lighten(#516ab6,10%);
+    }
     .user-name{
       text-decoration: none;
       display: inline-block;
