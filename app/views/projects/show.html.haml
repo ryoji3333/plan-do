@@ -46,7 +46,7 @@
     %ul.sortable-tasklist.sortable-tasklist-parent
       -if @tasklists.present?
         -@tasklists.each do |tasklist|
-          %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}"}
+          %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}","data-list-id": "#{tasklist.id}"}
             .task-bottom__task-list
               .task-bottom__task-list--task-title.js-modal-open-edittasklist{data: {id:tasklist.id}}
                 = tasklist.name
@@ -118,7 +118,7 @@
                                 .taskedit-btns
                                   .new-task__form__btn-form-taskedit
                                     = f.submit "タスクを更新する",class:"form-btn-taskedit"
-                                  = link_to task_path(id: task.id, project_id: task.project_id), method: :delete, class:"form-btn-destroy-task-link" do
+                                  = link_to task_path(id: task.id, project_id: task.project_id), method: :delete, class:"form-btn-destroy-task-link", data: { confirm: 'このタスクを削除しますか？' }  do
                                     .form-btn-destroy-task
                                       タスクを削除する
 

@@ -42,7 +42,8 @@ $(function() {
     update: function(e, ui){
       let item = ui.item;
       let item_data = item.data();
-      let params = { row_order_position: item.index() };
+
+      let params = { row_order_position: item.index()};
       $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
         var token = $('meta[name="csrf-token"]').attr('content');
         return jqXHR.setRequestHeader('X-CSRF-Token', token);
@@ -53,6 +54,11 @@ $(function() {
         dataType: 'json',
         data: params
       });
+
+      // let tasklist = $(".sortable-task-").data('list-id')
+      // console.log(tasklist)
+      // $(".sortable-task-parent li").data()
+
     },
 
 
