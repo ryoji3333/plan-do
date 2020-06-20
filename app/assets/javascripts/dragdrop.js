@@ -6,6 +6,7 @@ $(function() {
     // forcePlaceholderSize: 'true',
     distance: '0.1',
     tolerance: 'pointer',
+    items: "> li",
 
     start: function(e, ui){
       ui.placeholder.height(ui.helper[0].scrollHeight);
@@ -42,8 +43,8 @@ $(function() {
     update: function(e, ui){
       let item = ui.item;
       let item_data = item.data();
-
-      let params = { row_order_position: item.index()};
+      let listid = item.parents('.sortable-tasklist-child').data('list-id');
+      let params = { row_order_position: item.index(), tasklist_id: listid};
       $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
         var token = $('meta[name="csrf-token"]').attr('content');
         return jqXHR.setRequestHeader('X-CSRF-Token', token);
@@ -54,11 +55,6 @@ $(function() {
         dataType: 'json',
         data: params
       });
-
-      // let tasklist = $(".sortable-task-").data('list-id')
-      // console.log(tasklist)
-      // $(".sortable-task-parent li").data()
-
     },
 
 
