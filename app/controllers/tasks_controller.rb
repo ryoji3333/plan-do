@@ -33,7 +33,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.permit(:id, :row_order_position, :tasklist_id)
+    params.permit(:id, :row_order_position, :tasklist_id, :finish)
   end
 
 end

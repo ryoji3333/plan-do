@@ -59,6 +59,26 @@ class ProjectsController < ApplicationController
     redirect_to root_path
   end
 
+  def finishtask
+    task = Task.find(params[:task_id])
+    task.update(finish: true)
+    redirect_to project_path(params[:id])
+  end
+
+  def reversetask
+    task = Task.find(params[:task_id])
+    task.update(finish: false)
+    redirect_to project_path(params[:id])
+  end
+
+  def finishtasks
+    tasks = Task.where(tasklist_id: params[:tasklist_id])
+    tasks.each do |t|
+      t.update(finish: true)
+    end
+    redirect_to project_path(params[:id])
+  end
+
   def return
     project = Project.find(params[:id])
     project.update(finish: false)

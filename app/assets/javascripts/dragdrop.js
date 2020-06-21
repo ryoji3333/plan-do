@@ -1,5 +1,5 @@
 $(function() {
-  $( '.sortable-tasklist' ) . sortable({
+  $( '.sortable-tasklist' ).sortable({
     connectWith: '.sortable-tasklist',
     cursor: 'grabbing',
     // placeholder: 'sortable-tasklist-placeholder',
@@ -30,21 +30,22 @@ $(function() {
 
 
   });
-  $( '.sortable-tasklist' ) . disableSelection();
+  $( '.sortable-tasklist' ).disableSelection();
 
-  $( '.sortable' ) . sortable({
+  $( '.sortable' ).sortable({
     connectWith: '.sortable',
     cursor: 'grabbing',
     placeholder: 'sortable-placeholder',
     forcePlaceholderSize: 'true',
-    distance: '0.1',
     tolerance: 'pointer',
 
     update: function(e, ui){
       let item = ui.item;
       let item_data = item.data();
       let listid = item.parents('.sortable-tasklist-child').data('list-id');
-      let params = { row_order_position: item.index(), tasklist_id: listid};
+      let fini = item.parents('.sortable-tasklist-child').data('finish');
+      let params = { row_order_position: item.index(), tasklist_id: listid, finish: fini};
+      console.log(params)
       $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
         var token = $('meta[name="csrf-token"]').attr('content');
         return jqXHR.setRequestHeader('X-CSRF-Token', token);
@@ -57,7 +58,6 @@ $(function() {
       });
     },
 
-
   });
-  $( '.sortable' ) . disableSelection();
+  $( '.sortable' ).disableSelection();
 });

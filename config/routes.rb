@@ -15,6 +15,18 @@ Rails.application.routes.draw do
     end
 
     member do
+      get :finishtask
+    end
+
+    member do
+      get :reversetask
+    end
+
+    member do
+      get :finishtasks
+    end
+
+    member do
       get :return
     end
 

@@ -8,8 +8,15 @@
         -if @project.finish == true
           %span.project-name-finish
             (完了済)
-      .task-top__left__p-progress
-        達成率50%(5/10)
+      -if @project.tasks.present?
+        .task-top__left__p-progress
+          達成率
+          - progress = @project.tasks.where(finish: true).length * 100 / @project.tasks.length
+          = "#{progress.to_i}%"
+          (
+          = "#{@project.tasks.where(finish: true).length} /"
+          = @project.tasks.length
+          )
       -if @project.finish_date.present?
         .task-top__left__p-date
           -require 'date'
@@ -33,7 +40,19 @@
     .task-top__right
       = link_to edit_project_path do
         .task-top__right__edit
-          プロジェクトの編集
+          編集
+      .task-top__right__finish-task
+        完了済のタスク
+        %ul.drop-finish-tasklist
+          - @project.tasks.each do |task|
+            -if task.finish == true
+              %li.drop-finish-tasks
+                =task.text
+                .drop-finish-task-bottom
+                  .drop-finish-task-reverse
+                    = link_to "元に戻す", reversetask_project_path(task_id:task.id, project_id: task.project_id), class:"task-reverse"
+                  .drop-finish-task-delete
+                    = link_to "削除する", task_path(id: task.id, project_id: task.project_id), method: :delete, class:"task-delete", data: { confirm: 'このタスクを削除しますか？' }
       -if @project.finish == false
         = link_to finish_project_path(params[:id]), data: { confirm: 'このプロジェクトを完了済に移動しますか？' }  do
           .task-top__right__finish
@@ -46,10 +65,14 @@
     %ul.sortable-tasklist.sortable-tasklist-parent
       -if @tasklists.present?
         -@tasklists.each do |tasklist|
-          %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}","data-list-id": "#{tasklist.id}"}
+          %li.sortable-tasklist-child{ "data-update_url": "#{tasklist_sort_path(tasklist.id)}","data-list-id": "#{tasklist.id}","data-finish": "0"}
             .task-bottom__task-list
-              .task-bottom__task-list--task-title.js-modal-open-edittasklist{data: {id:tasklist.id}}
-                = tasklist.name
+              .tasklist-title-box
+                .task-bottom__task-list--task-title.js-modal-open-edittasklist{data: {id:tasklist.id}}
+                  = tasklist.name
+                .task-finish-icon
+                  = link_to finishtasks_project_path(tasklist_id: tasklist.id), class:"task-finish-icon-link", data: { confirm: 'このタスクリスト上にある全てのタスクを完了済にしますか？' }  do
+                    = icon('fas', 'check-square')
               
               .modal.js-modal-edittasklist{data: {id: tasklist.id}}
                 .modal__bg.js-modal-close-edittasklist
@@ -86,52 +109,55 @@
                 %ul.sortable.sortable-task-parent
                   -if tasklist.tasks.present?
                     -tasklist.tasks.rank(:row_order).each do |task|
-                      %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
-                        .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id:task.id},style: 'border-left: solid 10px' + task.color + ';'}
-                          = task.text
-                        .modal.js-modal-edittask{data: {id:task.id}}
-                          .modal__bg.js-modal-close-edittask
-                          .modal__content-edit
-                            .js-modal-close-edittask
-                              = icon('fas', 'times')
-                            .new-task__form
-                              =form_for(task,url: updatetask_project_path(task_id:task.id),method: :post, html:{tasklist_id: tasklist.id,class:'send-edittask-form'}) do |f|
-                                = f.hidden_field :project_id, value: @project.id
-                                = f.hidden_field :tasklist_id, value: tasklist.id
-                                .new-task__form__name
-                                  = f.text_field :text,class:"form-name",placeholder: "タスクを入力"
-                                .new-task__form__detail
-                                  .taskform-detail-text
-                                    = icon('fas', 'bars')
-                                    詳細情報
-                                  = f.text_area :detail,class:"form-detail",placeholder: "詳細情報を入力"
-                                .new-task__form__finish-date
-                                  .taskform-finish-text
-                                    = icon('fas', 'clock')
-                                    完了予定日
-                                  = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", id: "datepicker"
-                                .new-task__form__color
-                                  .taskform-color-text
-                                    = icon('fas', 'palette')
-                                    タスクカラーの変更
-                                  = f.color_field :color,class:"form-color"
-                                .taskedit-btns
+                      -if task.finish == false
+                        %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
+                          .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id:task.id},style: 'border-left: solid 10px' + task.color + ';'}
+                            = task.text
+                            -if task.finish_date.present?
+                              .task-finish-date
+                                = icon('fas', 'clock')
+                                = task.finish_date
+                          .modal.js-modal-edittask{data: {id:task.id}}
+                            .modal__bg.js-modal-close-edittask
+                            .modal__content-edit
+                              .js-modal-close-edittask
+                                = icon('fas', 'times')
+                              .new-task__form
+                                =form_for(task,url: updatetask_project_path(task_id:task.id),method: :post, html:{tasklist_id: tasklist.id,class:'send-edittask-form'}) do |f|
+                                  = f.hidden_field :project_id, value: @project.id
+                                  = f.hidden_field :tasklist_id, value: tasklist.id
+                                  .new-task__form__name
+                                    = f.text_field :text,class:"form-name",placeholder: "タスクを入力"
+                                  .new-task__form__detail
+                                    .taskform-detail-text
+                                      = icon('fas', 'bars')
+                                      詳細情報
+                                    = f.text_area :detail,class:"form-detail",placeholder: "詳細情報を入力"
+                                  .new-task__form__finish-date
+                                    .taskform-finish-text
+                                      = icon('fas', 'clock')
+                                      完了予定日
+                                    = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", id: "datepicker"
+                                  .new-task__form__color
+                                    .taskform-color-text
+                                      = icon('fas', 'palette')
+                                      タスクカラーの変更
+                                    = f.color_field :color,class:"form-color"
                                   .new-task__form__btn-form-taskedit
                                     = f.submit "タスクを更新する",class:"form-btn-taskedit"
-                                  = link_to task_path(id: task.id, project_id: task.project_id), method: :delete, class:"form-btn-destroy-task-link", data: { confirm: 'このタスクを削除しますか？' }  do
-                                    .form-btn-destroy-task
-                                      タスクを削除する
+                                  .taskedit-btns
+                                    = link_to finishtask_project_path(task_id: task.id),class:"form-btn-finish-task-link", data: { confirm: 'このタスクを完了済にしますか？' }  do
+                                      .task-finish
+                                        タスクを完了済にする
+                                    = link_to task_path(id: task.id, project_id: task.project_id), method: :delete, class:"form-btn-destroy-task-link", data: { confirm: 'このタスクを削除しますか？' }  do
+                                      .form-btn-destroy-task
+                                        タスクを削除する
 
               .new-task-frame.js-modal-open{data: {id: tasklist.id}}
                 .new-task
                   = icon('fas', 'plus-circle')
                   新しいタスクを作成
-    .task-bottom__finish-list
-      .task-bottom__task-list
-        .task-bottom__task-list--task-title.finish-title
-          完了済のタスク
-        .task-bottom__task-list-tasks
-          %ul.sortable.sortable-task-parent
+
     .task-bottom__new-list.js-modal-open-tasklist
       = icon('fas', 'plus-circle')
       新しいリストを作成
