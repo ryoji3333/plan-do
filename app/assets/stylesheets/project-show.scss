@@ -68,6 +68,60 @@
       &__edit:hover{
         background: lighten(#808080,10%);
       }
+      &__finish-task{
+        height: 40px;
+        margin-left: 5px;
+        line-height: 40px;
+        padding: 0 20px;
+        color: #fff;
+        background: #20b2aa;
+        border-radius: 5px;
+        position: relative;
+        .drop-finish-tasklist{
+          display: none;
+          width: 300px;
+          max-height: 550px;
+          overflow-y: scroll;
+          position: absolute;
+          color: black;
+          background: #f5f5f5;
+          top: 100%;
+          left: 0;
+          padding-bottom: 5px;
+        }
+        .drop-finish-tasks{
+          width: 275px;
+          padding-left: 5px;
+          margin:5px 0 0 10px;
+          background: darken(#f5f5f5,5%);
+        }
+        .drop-finish-tasks:hover{
+          background: darken(#f5f5f5,10%);
+        }
+        .drop-finish-task-bottom{
+          display: flex;
+          font-size: 12px;
+          height: 20px;
+          line-height: 20px;
+          .drop-finish-task-reverse{
+            .task-reverse{
+              color: #516ab6;
+            }
+          }
+          .drop-finish-task-delete{
+            margin-left: 10px;
+            .task-delete{
+              color: red;
+            }
+          }
+        }
+      }
+      &__finish-task:hover{
+        background: lighten(#20b2aa,10%);
+        .drop-finish-tasklist{
+          display: block;
+        }
+      }
       &__finish{
         height: 40px;
         margin:0 5px;
@@ -93,19 +147,37 @@
       max-height: 550px;
       width: 260px;
       margin-left: 15px;
-      &--task-title{
-      width: 240px;
-      background-color: #516ab6;
-      color: white;
-      padding: 5px 10px 5px 10px;
-        &:hover{
-          cursor: pointer;
+      .tasklist-title-box{
+        display: flex;
+        .task-bottom__task-list--task-title{
+        width: 240px;
+        background: #516ab6;
+        color: white;
+        padding: 5px 10px 5px 10px;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        .task-finish-icon{
+          background: #516ab6;
+          color: white;
+          font-size: 20px;
+          padding-right: 7px;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        .task-finish-icon-link{
+          color: white;
+          &:hover{
+            color: #00bfff;
+          }
         }
       }
       &--tasks{
         overflow-y: scroll;
         background: #eaf3ff;
-        max-height: 480px;
+        max-height: 470px;
         &--task{
         width: 200px;
         font-size: 16px;
@@ -280,7 +352,7 @@
   top: 50%;
   transform: translate(-50%,-50%);
   width: 60%;
-  height: 90%;
+  height: 95%;
   .js-modal-close{
     position:absolute;
     top: 0;
@@ -320,16 +392,33 @@
       border: solid 1px #00bfff;
     }
   }
+  .form-btn-finish-task-link{
+    text-decoration: none;
+  }
+  .task-finish{
+    width: 240px;
+    height: 50px;
+    font-size: 20px;
+    outline: 0;
+    background: #20b2aa;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 20px;
+  }
+  .task-finish:hover{
+    background: lighten(#20b2aa, 10%);
+  }
   .taskedit-btns{
     display: flex;
     width: 500px;
-    margin: 30px auto 0;
+    margin: 10px auto 0;
   }
   .new-task__form__btn-form-taskedit{
-    width: 300px;
-    margin-right: 40px;
+    width: 500px;
+    margin: 10px auto 0;
     .form-btn-taskedit{
-      width: 240px;
+      width: 500px;
       height: 50px;
       font-size: 20px;
       outline: 0;
@@ -548,4 +637,9 @@
 
 #ui-datepicker {
   z-index: 9999 !important;
+}
+
+.task-finish-date{
+  font-size:12px;
+  text-align:right;
 }
