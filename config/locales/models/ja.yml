@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      project: プロジェクト
+      tasklist: タスクリスト
+      task: タスク
+    attributes:
+      project:
+        name: プロジェクト名
+        finish_date: 完了予定日
+      tasklist:
+        name: タスクリスト名
+      task:
+        text: タスク名
+      user:
+        nickname: ニックネーム
+        password: パスワード

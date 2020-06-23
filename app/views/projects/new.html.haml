@@ -4,13 +4,14 @@
     新規プロジェクトを作成する
   .project-new__form
     =form_for(@project) do |f|
+      = render 'layouts/error_messages', model: f.object
       .project-new__form__name
-        プロジェクトの名前を設定
+        プロジェクトの名前を設定（必須）
         %br/
         = f.text_field :name,class:"form-name",placeholder: "プロジェクト名"
       .project-new__form__finish
-        完了予定日の設定
+        完了予定日の設定（任意）
         %br/
-        = f.text_field :finish_date,class:"form-finish", placeholder: "完了予定日（例：2020/01/01）", id: "datepicker"
+        = f.text_field :finish_date,class:"form-finish datepicker", placeholder: "完了予定日（例：2020/01/01）"
       .project-new__form__btn-form
         = f.submit "プロジェクトを作成する",class:"form-btn"

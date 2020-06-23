@@ -5,4 +5,5 @@ class Tasklist < ApplicationRecord
   has_many :tasks
   belongs_to :user
   belongs_to :project
+  validates :name, presence: true
 end
