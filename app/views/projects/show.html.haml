@@ -111,7 +111,7 @@
                     -tasklist.tasks.rank(:row_order).each do |task|
                       -if task.finish == false
                         %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
-                          .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id:task.id},style: 'border-left: solid 10px' + task.color + ';'}
+                          .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id: task.id, row: task.id},style: 'border-left: solid 10px' + task.color + ';'}
                             = task.text
                             -if task.finish_date.present?
                               .task-finish-date
@@ -123,9 +123,8 @@
                               .js-modal-close-edittask
                                 = icon('fas', 'times')
                               .new-task__form
-                                =form_for(task,url: updatetask_project_path(task_id:task.id),method: :post, html:{tasklist_id: tasklist.id,class:'send-edittask-form'}) do |f|
+                                =form_for(task,url: updatetask_project_path(task_id: task.id),method: :post, html:{class:'send-edittask-form'}) do |f|
                                   = f.hidden_field :project_id, value: @project.id
-                                  = f.hidden_field :tasklist_id, value: tasklist.id
                                   .new-task__form__name
                                     = f.text_field :text,class:"form-name",placeholder: "タスクを入力"
                                   .new-task__form__detail
@@ -137,7 +136,7 @@
                                     .taskform-finish-text
                                       = icon('fas', 'clock')
                                       完了予定日
-                                    = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", id: "datepicker"
+                                    = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", "data-row": task.id
                                   .new-task__form__color
                                     .taskform-color-text
                                       = icon('fas', 'palette')

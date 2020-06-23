@@ -10,8 +10,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    Project.create(project_params)
-    redirect_to root_path
+    # Project.create(project_params)
+    # redirect_to root_path
+    @project = Project.new(project_params)
+    if @project.save
+      redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   def show
