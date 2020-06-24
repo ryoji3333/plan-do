@@ -61,3 +61,7 @@ gem 'ranked-model'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+group :production do
+  gem 'pg'
+end
