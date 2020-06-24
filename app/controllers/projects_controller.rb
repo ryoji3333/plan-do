@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :correct_user,   only: [:show, :edit, :update]
   def index
     if user_signed_in?
       @projects = Project.where(user_id: current_user.id)
@@ -32,9 +33,12 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    project = Project.find(params[:id])
-    project.update(project_params)
-    redirect_to project_path(params[:id])
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      redirect_to project_path(params[:id])
+    else
+      render 'projects/edit'
+    end
   end
 
   def newtasklist
@@ -116,5 +120,12 @@ class ProjectsController < ApplicationController
 
   def tasklist_edit_params
     params.require(:tasklist).permit(:name,:project_id,:id).merge(user_id: current_user.id)
+  end
+
+  def correct_user
+    @user = User.find(Project.find(params[:id]).user_id)
+  unless current_user == @user
+    redirect_to(root_path) 
+  end
   end
 end
