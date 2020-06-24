@@ -113,10 +113,10 @@
                         %li.sortable-task-child{ "data-update_url": "#{task_sort_path(task.id)}"}
                           .task-bottom__task-list--tasks--task.js-modal-open-edittask{data: {id: task.id, row: task.id},style: 'border-left: solid 10px' + task.color + ';'}
                             = task.text
-                            -if task.finish_date.present?
-                              .task-finish-date
-                                = icon('fas', 'clock')
-                                = task.finish_date
+                            -# -if task.finish_date.present?
+                            -#   .task-finish-date
+                            -#     = icon('fas', 'clock')
+                            -#     = task.finish_date
                           .modal.js-modal-edittask{data: {id:task.id}}
                             .modal__bg.js-modal-close-edittask
                             .modal__content-edit
@@ -132,11 +132,11 @@
                                       = icon('fas', 'bars')
                                       詳細情報
                                     = f.text_area :detail,class:"form-detail",placeholder: "詳細情報を入力"
-                                  .new-task__form__finish-date
-                                    .taskform-finish-text
-                                      = icon('fas', 'clock')
-                                      完了予定日
-                                    = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", "data-row": task.id
+                                  -# .new-task__form__finish-date
+                                  -#   .taskform-finish-text
+                                  -#     = icon('fas', 'clock')
+                                  -#     完了予定日
+                                  -#   = f.text_field :finish_date,class:"form-date",placeholder: "完了予定日を入力（例：2020/01/01）", "data-row": task.id
                                   .new-task__form__color
                                     .taskform-color-text
                                       = icon('fas', 'palette')
