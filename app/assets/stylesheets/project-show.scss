@@ -180,7 +180,7 @@
       &--tasks{
         overflow-y: scroll;
         background: #eaf3ff;
-        max-height: calc(100vh - 230px);
+        max-height: calc(100vh - 260px);
         -ms-overflow-style: none;    /* IE, Edge 対応 */
         scrollbar-width: none;       /* Firefox 対応 */
         &::-webkit-scrollbar {  /* Chrome, Safari 対応 */
