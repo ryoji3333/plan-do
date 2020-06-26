@@ -182,6 +182,11 @@
         overflow-y: scroll;
         background: #eaf3ff;
         max-height: 470px;
+        -ms-overflow-style: none;    /* IE, Edge 対応 */
+        scrollbar-width: none;       /* Firefox 対応 */
+        &::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+          display:none;
+        }
         &--task{
         width: 200px;
         font-size: 16px;
@@ -339,11 +344,12 @@
       margin: 30px auto 10px;
       font-size: 20px;
       outline: 0;
-      background: darken(#9acd32,10%);;
+      background: darken(#9acd32,10%);
       color: white;
     }
     .form-btn:hover{
       background:#9acd32;
+      cursor: pointer;
     }
     .form-btn:active{
       -webkit-transform: translateY(4px);
@@ -434,6 +440,7 @@
     }
     .form-btn-taskedit:hover{
       background: lighten(#1dc1d6,10%);
+      cursor: pointer;
     }
     .form-btn-taskedit:active{
       -webkit-transform: translateY(4px);
@@ -552,6 +559,7 @@
     }
     .form-btn-tasklistedit:hover{
       background: lighten(#516ab6,10%);
+      cursor: pointer;
     }
     .form-btn-tasklistedit:active{
       -webkit-transform: translateY(4px);
@@ -576,6 +584,7 @@
 }
 .form-btn-tasklist:hover{
   background: lighten(#1e90ff,20%);
+  cursor: pointer;
 }
 .form-btn-tasklist:active{
   -webkit-transform: translateY(4px);
@@ -620,6 +629,7 @@
 }
 .form-btn-destroy-tasklist:hover{
   background: lighten(red,20%);
+  cursor: pointer;
 }
 .form-btn-destroy-tasklist-link{
   text-decoration: none;
@@ -637,6 +647,7 @@
 }
 .form-btn-destroy-task:hover{
   background: lighten(red,20%);
+  cursor: pointer;
 }
 .form-btn-destroy-task-link{
   text-decoration: none;
@@ -649,4 +660,23 @@
 .task-finish-date{
   font-size:12px;
   text-align:right;
+}
+
+
+//heroku-after
+input {
+  border: none;
+  outline: none;
+}
+
+.form-btn{
+  cursor: pointer;
+}
+
+.user-form-signup-btn:hover{
+  cursor: pointer;
+}
+
+.user-login-form-signin-btn:hover{
+  cursor: pointer;
 }
