@@ -5,7 +5,7 @@ PlanDo
 
 カード形式でタスクを管理することができるタスク管理アプリ
 
-## environment
+## Environment
 ruby 2.5.1
 
 Rails 5.0.7.2
